@@ -23,8 +23,8 @@ jobs:
         
     - name: Deploy to S3
       run: |
-        aws s3 sync . s3://urivinter.com --delete --exclude ".git/*" --exclude ".github/*" --exclude "README.md"
+        aws s3 sync . s3://urivinter.com --delete --exclude ".git/*" --exclude ".github/*" --exclude "README.md" --exclude "*.json"
         
-    - name: Invalidate CloudFront (will add later)
+    - name: Invalidate CloudFront
       run: |
-        echo "CloudFront invalidation will be added in next step"
+        aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

@@ -55,3 +55,4 @@ temp/
 
 # Linux specific
 *~
+*.json
